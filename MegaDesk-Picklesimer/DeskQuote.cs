@@ -21,7 +21,7 @@ namespace MegaDesk_Picklesimer
         public ShippingOption ShippingOption { get; set; }
         public decimal PriceQuote { get; set; }
 
-        public double CalculatePriceQuote()
+        public decimal CalculatePriceQuote()
         {
             // Surface Area Cost
             var surfaceArea = Desk.Width * Desk.Depth;
@@ -53,7 +53,7 @@ namespace MegaDesk_Picklesimer
             }
 
             // Shipping Cost
-            double shippingCost = 0;
+            decimal shippingCost = 0;
             if (ShippingOption != ShippingOption.Normal14Day)
             {
                 if (surfaceArea < 1000)
@@ -74,7 +74,7 @@ namespace MegaDesk_Picklesimer
                     shippingCost -= 20;
                     break;
                 case ShippingOption.RushOrder7Day:
-                    shippingCost /= 2.0;
+                    shippingCost /= 2M;
                     break;
             }
 
