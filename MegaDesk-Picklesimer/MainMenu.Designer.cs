@@ -39,6 +39,7 @@
             // 
             // btnAddNewQuote
             // 
+            this.btnAddNewQuote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnAddNewQuote.Location = new System.Drawing.Point(37, 35);
             this.btnAddNewQuote.Name = "btnAddNewQuote";
             this.btnAddNewQuote.Size = new System.Drawing.Size(276, 78);
@@ -49,6 +50,7 @@
             // 
             // btnViewQuotes
             // 
+            this.btnViewQuotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnViewQuotes.Location = new System.Drawing.Point(37, 135);
             this.btnViewQuotes.Name = "btnViewQuotes";
             this.btnViewQuotes.Size = new System.Drawing.Size(276, 78);
@@ -59,6 +61,7 @@
             // 
             // btnSearchQuotes
             // 
+            this.btnSearchQuotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSearchQuotes.Location = new System.Drawing.Point(37, 235);
             this.btnSearchQuotes.Name = "btnSearchQuotes";
             this.btnSearchQuotes.Size = new System.Drawing.Size(276, 78);
@@ -69,6 +72,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExit.Location = new System.Drawing.Point(37, 335);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(276, 78);

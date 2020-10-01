@@ -12,9 +12,21 @@ namespace MegaDesk_Picklesimer
 {
     public partial class DisplayQuote : Form
     {
+        private Form _MainMenu;
+
         public DisplayQuote()
         {
             InitializeComponent();
+        }
+
+        private void DisplayQuote_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _MainMenu.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

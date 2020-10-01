@@ -19,20 +19,29 @@ namespace MegaDesk_Picklesimer
 
         private void btnAddNewQuote_Click(object sender, EventArgs e)
         {
-            var addQuote = new AddQuote();
+            var addQuote = new AddQuote(this);
+            addQuote.StartPosition = FormStartPosition.Manual;
+            addQuote.Location = Location;
             addQuote.Show();
+            Hide();
         }
 
         private void btnViewQuotes_Click(object sender, EventArgs e)
         {
-            var addQuote = new ViewAllQuotes();
-            addQuote.Show();
+            var viewQuotes = new ViewAllQuotes(this);
+            viewQuotes.StartPosition = FormStartPosition.Manual;
+            viewQuotes.Location = Location;
+            viewQuotes.Show();
+            Hide();
         }
 
         private void btnSearchQuotes_Click(object sender, EventArgs e)
         {
-            var addQuote = new SearchQuotes();
-            addQuote.Show();
+            var searchQuotes = new SearchQuotes(this);
+            searchQuotes.StartPosition = FormStartPosition.Manual;
+            searchQuotes.Location = Location;
+            searchQuotes.Show();
+            Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

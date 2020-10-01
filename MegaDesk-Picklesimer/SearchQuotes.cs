@@ -12,9 +12,23 @@ namespace MegaDesk_Picklesimer
 {
     public partial class SearchQuotes : Form
     {
-        public SearchQuotes()
+        private Form _MainMenu;
+
+        public SearchQuotes(Form mainMenu)
         {
             InitializeComponent();
+
+            _MainMenu = mainMenu;
+        }
+
+        private void SearchQuotes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _MainMenu.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

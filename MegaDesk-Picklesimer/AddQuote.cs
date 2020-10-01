@@ -12,9 +12,31 @@ namespace MegaDesk_Picklesimer
 {
     public partial class AddQuote : Form
     {
-        public AddQuote()
+        private Form _MainMenu;
+
+        public AddQuote(Form mainMenu)
         {
             InitializeComponent();
+
+            _MainMenu = mainMenu;
+
+            var materials = Enum.GetValues(typeof(DesktopMaterial))
+                            .Cast<DesktopMaterial>()
+                            .ToList();
+
+            cmbMaterial.DataSource = materials;
+            // Select no option
+            cmbMaterial.SelectedIndex = -1;
+        }
+
+        private void AddQuote_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _MainMenu.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
