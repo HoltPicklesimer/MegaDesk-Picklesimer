@@ -21,6 +21,7 @@ namespace MegaDesk_Picklesimer
 
             _MainMenu = mainMenu;
 
+            // Material Selector
             var materials = Enum.GetValues(typeof(DesktopMaterial))
                             .Cast<DesktopMaterial>()
                             .ToList();
@@ -29,6 +30,12 @@ namespace MegaDesk_Picklesimer
             // Select no option
             cmbMaterial.SelectedIndex = -1;
 
+            // Shipping Selector
+            var shippingOptions = Enum.GetValues(typeof(ShippingOption))
+                            .Cast<ShippingOption>()
+                            .ToList();
+
+            cmbShip.DataSource = shippingOptions;
             // Select no option
             cmbShip.SelectedIndex = -1;
 

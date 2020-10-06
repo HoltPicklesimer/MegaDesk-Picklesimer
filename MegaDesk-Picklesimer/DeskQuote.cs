@@ -8,10 +8,10 @@ namespace MegaDesk_Picklesimer
 {
     public enum ShippingOption
     {
-        RushOrder3Day,
-        RushOrder5Day,
-        RushOrder7Day,
-        Normal14Day
+        Rush3Day,
+        Rush5Day,
+        Rush7Day,
+        NoRush
     }
 
     public class DeskQuote
@@ -54,7 +54,7 @@ namespace MegaDesk_Picklesimer
 
             // Shipping Cost
             decimal shippingCost = 0;
-            if (ShippingOption != ShippingOption.Normal14Day)
+            if (ShippingOption != ShippingOption.NoRush)
             {
                 if (surfaceArea < 1000)
                     shippingCost = 60;
@@ -67,13 +67,13 @@ namespace MegaDesk_Picklesimer
             switch (ShippingOption)
             {
                 default:
-                case ShippingOption.Normal14Day:
-                case ShippingOption.RushOrder3Day:
+                case ShippingOption.NoRush:
+                case ShippingOption.Rush3Day:
                     break;
-                case ShippingOption.RushOrder5Day:
+                case ShippingOption.Rush5Day:
                     shippingCost -= 20;
                     break;
-                case ShippingOption.RushOrder7Day:
+                case ShippingOption.Rush7Day:
                     shippingCost /= 2M;
                     break;
             }

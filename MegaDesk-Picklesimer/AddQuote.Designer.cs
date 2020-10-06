@@ -150,11 +150,6 @@
             // 
             this.cmbShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmbShip.FormattingEnabled = true;
-            this.cmbShip.Items.AddRange(new object[] {
-            "Normal 14 Day",
-            "Rush 3 Day",
-            "Rush 5 Day",
-            "Rush 7 Day"});
             this.cmbShip.Location = new System.Drawing.Point(188, 21);
             this.cmbShip.Name = "cmbShip";
             this.cmbShip.Size = new System.Drawing.Size(160, 28);
