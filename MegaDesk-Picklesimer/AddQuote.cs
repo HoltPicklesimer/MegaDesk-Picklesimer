@@ -41,6 +41,14 @@ namespace MegaDesk_Picklesimer
 
             // Set the date
             lblDate.Text = DateTime.Now.ToShortDateString();
+
+            // Set min/mx of controls
+            nWidth.Minimum = Desk.MINWIDTH;
+            nWidth.Maximum = Desk.MAXWIDTH;
+            nDepth.Minimum = Desk.MINDEPTH;
+            nDepth.Maximum = Desk.MAXDEPTH;
+            nDrawers.Minimum = Desk.MINDRAWERS;
+            nDrawers.Maximum = Desk.MAXDRAWERS;
         }
 
         private void AddQuote_FormClosed(object sender, FormClosedEventArgs e)
