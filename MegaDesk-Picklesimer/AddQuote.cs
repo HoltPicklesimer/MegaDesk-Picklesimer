@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -23,8 +24,8 @@ namespace MegaDesk_Picklesimer
             _MainMenu = mainMenu;
 
             // Material Selector
-            var materials = Enum.GetValues(typeof(DesktopMaterial))
-                            .Cast<DesktopMaterial>()
+            var materials = Enum.GetValues(typeof(DesktopMaterials))
+                            .Cast<DesktopMaterials>()
                             .ToList();
 
             cmbMaterial.DataSource = materials;
@@ -32,8 +33,8 @@ namespace MegaDesk_Picklesimer
             cmbMaterial.SelectedIndex = -1;
 
             // Shipping Selector
-            var shippingOptions = Enum.GetValues(typeof(DeliveryOption))
-                            .Cast<DeliveryOption>()
+            var shippingOptions = Enum.GetValues(typeof(DeliveryOptions))
+                            .Cast<DeliveryOptions>()
                             .ToList();
 
             cmbDelivery.DataSource = shippingOptions;
@@ -68,7 +69,25 @@ namespace MegaDesk_Picklesimer
             {
                 if (ValidateFields())
                 {
-                    var desk = new Desk();
+                    var newDesk = new Desk()
+                    {
+                        Width = nWidth.Value,
+                        Depth = nDepth.Value,
+                        Drawers = (int)nDrawers.Value,
+                        SurfaceMaterial = (DesktopMaterials)cmbMaterial.SelectedValue
+                    };
+
+                    var newQuote = new DeskQuote()
+                    {
+                        CustomerName = txtName.Text,
+                        DeliveryOption = (DeliveryOptions)cmbDelivery.SelectedValue,
+                        Desk = newDesk,
+                        QuoteDate = DateTime.Now
+                    };
+
+                    newQuote.PriceQuote = newQuote.CalculatePriceQuote();
+
+                    AddQuoteToFile(newQuote);
                 }
             }
             catch(Exception ex)
@@ -108,6 +127,63 @@ namespace MegaDesk_Picklesimer
             {
                 return true;
             }
+        }
+
+        private void AddQuoteToFile(DeskQuote deskQuote)
+        {
+            var quotesFile = @"quotes.json";
+            List<DeskQuote> deskQuotes = new List<DeskQuote>();
+
+            // read existing quotes
+            if (File.Exists(quotesFile))
+            {
+                using (StreamReader reader = new StreamReader(quotesFile))
+                {
+                    string quotes = reader.ReadToEnd();
+
+                    if (quotes.Length > 0)
+                    {
+                        // deserialize quotes
+                        deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
+                    }
+                }
+            }
+
+            // Add the quote to the list
+            deskQuotes.Add(deskQuote);
+
+            // Save the new list to the file
+            SaveQuotes(deskQuotes);
+
+            // Display the new quote
+            DisplayNewQuote(deskQuote);
+        }
+
+        private void SaveQuotes(List<DeskQuote> deskQuotes)
+        {
+            var quotesFile = @"quotes.json";
+
+            // If the file does not exist, create it
+            if (!File.Exists(quotesFile))
+            {
+                File.Create(quotesFile);
+            }
+
+            using (StreamWriter writer = new StreamWriter(quotesFile))
+            {
+                string jsonObject = JsonConvert.SerializeObject(deskQuotes);
+                writer.Write(jsonObject);
+            }
+        }
+
+        private void DisplayNewQuote(DeskQuote newQuote)
+        {
+            var displayQuote = new DisplayQuote(_MainMenu, newQuote);
+            displayQuote.StartPosition = FormStartPosition.Manual;
+            displayQuote.Location = Location;
+            displayQuote.Show();
+            Close();
+            _MainMenu.Hide();
         }
     }
 }

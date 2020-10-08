@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaDesk_Picklesimer
 {
-    public enum DesktopMaterial
+    public enum DesktopMaterials
     {
         Laminate,
         Oak,
@@ -17,20 +17,15 @@ namespace MegaDesk_Picklesimer
 
     public class Desk
     {
-        public int Width { get; set; }
-        public int Depth { get; set; }
+        public decimal Width { get; set; }
+        public decimal Depth { get; set; }
         public int Drawers { get; set; }
-        public DesktopMaterial SurfaceMaterial { get; set; }
-        public const int MIN_WIDTH = 24;
-        public const int MAX_WIDTH = 96;
-        public const int MIN_DEPTH = 12;
-        public const int MAX_DEPTH = 48;
+        public DesktopMaterials SurfaceMaterial { get; set; }
+        public const decimal MIN_WIDTH = 24;
+        public const decimal MAX_WIDTH = 96;
+        public const decimal MIN_DEPTH = 12;
+        public const decimal MAX_DEPTH = 48;
         public const int MIN_DRAWERS = 0;
         public const int MAX_DRAWERS = 7;
-
-        public Desk()
-        {
-
-        }
     }
 }

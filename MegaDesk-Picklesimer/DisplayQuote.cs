@@ -14,9 +14,21 @@ namespace MegaDesk_Picklesimer
     {
         private Form _MainMenu;
 
-        public DisplayQuote()
+        public DisplayQuote(Form mainMenu, DeskQuote deskQuote)
         {
             InitializeComponent();
+
+            _MainMenu = mainMenu;
+
+            // Set the values of the quote in the form
+            nWidth.Value = deskQuote.Desk.Width;
+            nDepth.Value = deskQuote.Desk.Depth;
+            nDrawers.Value = deskQuote.Desk.Drawers;
+            cmbMaterial.Text = deskQuote.Desk.SurfaceMaterial.ToString();
+            txtName.Text = deskQuote.CustomerName;
+            lblDate.Text = deskQuote.QuoteDate.ToShortDateString();
+            cmbDelivery.Text = deskQuote.DeliveryOption.ToString();
+            txtPrice.Text = deskQuote.PriceQuote.ToString("c");
         }
 
         private void DisplayQuote_FormClosed(object sender, FormClosedEventArgs e)

@@ -77,16 +77,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(75, 25);
+            this.label1.Location = new System.Drawing.Point(32, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
+            this.label1.Size = new System.Drawing.Size(151, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Width:";
+            this.label1.Text = "Width in inches:";
             // 
             // nWidth
             // 
             this.nWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.nWidth.Location = new System.Drawing.Point(165, 24);
+            this.nWidth.Location = new System.Drawing.Point(209, 24);
             this.nWidth.Maximum = new decimal(new int[] {
             96,
             0,
@@ -146,19 +146,19 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Delivery Option:";
             // 
-            // cmbShip
+            // cmbDelivery
             // 
             this.cmbDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmbDelivery.FormattingEnabled = true;
             this.cmbDelivery.Location = new System.Drawing.Point(188, 21);
-            this.cmbDelivery.Name = "cmbShip";
+            this.cmbDelivery.Name = "cmbDelivery";
             this.cmbDelivery.Size = new System.Drawing.Size(160, 28);
             this.cmbDelivery.TabIndex = 6;
             // 
             // nDepth
             // 
             this.nDepth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.nDepth.Location = new System.Drawing.Point(165, 56);
+            this.nDepth.Location = new System.Drawing.Point(209, 56);
             this.nDepth.Maximum = new decimal(new int[] {
             48,
             0,
@@ -182,11 +182,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(75, 57);
+            this.label4.Location = new System.Drawing.Point(32, 57);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 25);
+            this.label4.Size = new System.Drawing.Size(152, 25);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Depth:";
+            this.label4.Text = "Depth in inches:";
             // 
             // label5
             // 
@@ -279,7 +279,7 @@
             // 
             this.groupBox3.Controls.Add(this.cmbDelivery);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Location = new System.Drawing.Point(416, 241);
+            this.groupBox3.Location = new System.Drawing.Point(24, 241);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(360, 71);
             this.groupBox3.TabIndex = 19;
