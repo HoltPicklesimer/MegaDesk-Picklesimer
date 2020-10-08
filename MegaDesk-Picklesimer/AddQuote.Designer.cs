@@ -36,7 +36,7 @@
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbShip = new System.Windows.Forms.ComboBox();
+            this.cmbDelivery = new System.Windows.Forms.ComboBox();
             this.nDepth = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -142,18 +142,18 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.Location = new System.Drawing.Point(13, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 25);
+            this.label3.Size = new System.Drawing.Size(151, 25);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Shipping Option:";
+            this.label3.Text = "Delivery Option:";
             // 
             // cmbShip
             // 
-            this.cmbShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cmbShip.FormattingEnabled = true;
-            this.cmbShip.Location = new System.Drawing.Point(188, 21);
-            this.cmbShip.Name = "cmbShip";
-            this.cmbShip.Size = new System.Drawing.Size(160, 28);
-            this.cmbShip.TabIndex = 6;
+            this.cmbDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cmbDelivery.FormattingEnabled = true;
+            this.cmbDelivery.Location = new System.Drawing.Point(188, 21);
+            this.cmbDelivery.Name = "cmbShip";
+            this.cmbDelivery.Size = new System.Drawing.Size(160, 28);
+            this.cmbDelivery.TabIndex = 6;
             // 
             // nDepth
             // 
@@ -277,7 +277,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.cmbShip);
+            this.groupBox3.Controls.Add(this.cmbDelivery);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(416, 241);
             this.groupBox3.Name = "groupBox3";
@@ -330,7 +330,7 @@
         private System.Windows.Forms.NumericUpDown nDepth;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbShip;
+        private System.Windows.Forms.ComboBox cmbDelivery;
         private System.Windows.Forms.NumericUpDown nDrawers;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

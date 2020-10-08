@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MegaDesk_Picklesimer
 {
@@ -31,24 +32,24 @@ namespace MegaDesk_Picklesimer
             cmbMaterial.SelectedIndex = -1;
 
             // Shipping Selector
-            var shippingOptions = Enum.GetValues(typeof(ShippingOption))
-                            .Cast<ShippingOption>()
+            var shippingOptions = Enum.GetValues(typeof(DeliveryOption))
+                            .Cast<DeliveryOption>()
                             .ToList();
 
-            cmbShip.DataSource = shippingOptions;
+            cmbDelivery.DataSource = shippingOptions;
             // Select no option
-            cmbShip.SelectedIndex = -1;
+            cmbDelivery.SelectedIndex = -1;
 
             // Set the date
             lblDate.Text = DateTime.Now.ToShortDateString();
 
             // Set min/mx of controls
-            nWidth.Minimum = Desk.MINWIDTH;
-            nWidth.Maximum = Desk.MAXWIDTH;
-            nDepth.Minimum = Desk.MINDEPTH;
-            nDepth.Maximum = Desk.MAXDEPTH;
-            nDrawers.Minimum = Desk.MINDRAWERS;
-            nDrawers.Maximum = Desk.MAXDRAWERS;
+            nWidth.Minimum = Desk.MIN_WIDTH;
+            nWidth.Maximum = Desk.MAX_WIDTH;
+            nDepth.Minimum = Desk.MIN_DEPTH;
+            nDepth.Maximum = Desk.MAX_DEPTH;
+            nDrawers.Minimum = Desk.MIN_DRAWERS;
+            nDrawers.Maximum = Desk.MAX_DRAWERS;
         }
 
         private void AddQuote_FormClosed(object sender, FormClosedEventArgs e)
@@ -65,7 +66,10 @@ namespace MegaDesk_Picklesimer
         {
             try
             {
-                CheckFields();
+                if (ValidateFields())
+                {
+                    var desk = new Desk();
+                }
             }
             catch(Exception ex)
             {
@@ -74,20 +78,20 @@ namespace MegaDesk_Picklesimer
         }
 
         // Checks the fields to make sure they are filled in with valid values.
-        private void CheckFields()
+        private bool ValidateFields()
         {
             var errorMessage = string.Empty;
+
+            if (string.IsNullOrEmpty(txtName.Text))
+                errorMessage += "Please enter a name for this order.\n";
 
             var materialsCount = cmbMaterial.Items.Count;
             if (cmbMaterial.SelectedIndex < 0 || cmbMaterial.SelectedIndex > materialsCount)
                 errorMessage += "Please select a surface material.\n";
 
-            var shippingOptionCount = cmbShip.Items.Count;
-            if (cmbShip.SelectedIndex < 0 || cmbShip.SelectedIndex > shippingOptionCount)
+            var shippingOptionCount = cmbDelivery.Items.Count;
+            if (cmbDelivery.SelectedIndex < 0 || cmbDelivery.SelectedIndex > shippingOptionCount)
                 errorMessage += "Please select a shipping option.\n";
-
-            if (string.IsNullOrEmpty(txtName.Text))
-                errorMessage += "Please enter a name for this order.\n";
 
             // Display a message if any field is empty or wrong
             if (errorMessage != string.Empty)
@@ -97,6 +101,12 @@ namespace MegaDesk_Picklesimer
                         errorMessage
                     );
                 MessageBox.Show(message);
+
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

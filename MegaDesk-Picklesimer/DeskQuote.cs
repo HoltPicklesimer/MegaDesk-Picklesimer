@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MegaDesk_Picklesimer
 {
-    public enum ShippingOption
+    public enum DeliveryOption
     {
         Rush3Day,
         Rush5Day,
@@ -16,45 +16,61 @@ namespace MegaDesk_Picklesimer
 
     public class DeskQuote
     {
+        // Private variables
+        private int[,] _rushOrderPrices;
+
+        // Constants
+        private const decimal BASE_COST = 200M;
+        private const decimal LAMINATE_COST = 100M;
+        private const decimal OAK_COST = 200M;
+        private const decimal ROSEWOOD_COST = 300M;
+        private const decimal VENEER_COST = 125M;
+        private const decimal PINE_COST = 50M;
+        private const decimal DRAWER_COST = 50M;
+        private const decimal SURFACEAREA_COST = 200M;
+
+        // Public variables
         public string CustomerName { get; set; }
         public Desk Desk { get; set; }
-        public ShippingOption ShippingOption { get; set; }
+        public DeliveryOption ShippingOption { get; set; }
         public decimal PriceQuote { get; set; }
 
         public decimal CalculatePriceQuote()
         {
             // Surface Area Cost
             var surfaceArea = Desk.Width * Desk.Depth;
-            var surfaceAreaCost = surfaceArea > 1000 ? surfaceArea : 0;
+            var surfaceAreaCost = 0M;
+            if (surfaceArea > 1000)
+                surfaceAreaCost = surfaceArea * SURFACEAREA_COST - 1000;
 
             // Drawer Cost
-            var drawerCost = Desk.Drawers * 50;
+            var drawerCost = Desk.Drawers * DRAWER_COST;
 
             // Material Cost
-            var materialCost = 100;
+            var materialCost = 0M;
             switch(Desk.SurfaceMaterial)
             {
                 default:
                 case DesktopMaterial.Laminate:
-                    materialCost = 100;
+                    materialCost = LAMINATE_COST;
                     break;
                 case DesktopMaterial.Oak:
-                    materialCost = 200;
+                    materialCost = OAK_COST;
                     break;
                 case DesktopMaterial.Rosewood:
-                    materialCost = 300;
+                    materialCost = ROSEWOOD_COST;
                     break;
                 case DesktopMaterial.Veneer:
-                    materialCost = 125;
+                    materialCost = VENEER_COST;
                     break;
                 case DesktopMaterial.Pine:
-                    materialCost = 50;
+                    materialCost = PINE_COST;
                     break;
             }
 
             // Shipping Cost
             decimal shippingCost = 0;
-            if (ShippingOption != ShippingOption.NoRush)
+            if (ShippingOption != DeliveryOption.NoRush)
             {
                 if (surfaceArea < 1000)
                     shippingCost = 60;
@@ -67,19 +83,19 @@ namespace MegaDesk_Picklesimer
             switch (ShippingOption)
             {
                 default:
-                case ShippingOption.NoRush:
-                case ShippingOption.Rush3Day:
+                case DeliveryOption.NoRush:
+                case DeliveryOption.Rush3Day:
                     break;
-                case ShippingOption.Rush5Day:
+                case DeliveryOption.Rush5Day:
                     shippingCost -= 20;
                     break;
-                case ShippingOption.Rush7Day:
+                case DeliveryOption.Rush7Day:
                     shippingCost /= 2M;
                     break;
             }
 
             // Calculate the desk price
-            PriceQuote = 200 + surfaceAreaCost + drawerCost + materialCost + shippingCost;
+            PriceQuote = BASE_COST + surfaceAreaCost + drawerCost + materialCost + shippingCost;
             return PriceQuote;
         }
     }

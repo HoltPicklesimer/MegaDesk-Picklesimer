@@ -21,11 +21,16 @@ namespace MegaDesk_Picklesimer
         public int Depth { get; set; }
         public int Drawers { get; set; }
         public DesktopMaterial SurfaceMaterial { get; set; }
-        public const int MINWIDTH = 24;
-        public const int MAXWIDTH = 96;
-        public const int MINDEPTH = 12;
-        public const int MAXDEPTH = 48;
-        public const int MINDRAWERS = 0;
-        public const int MAXDRAWERS = 7;
+        public const int MIN_WIDTH = 24;
+        public const int MAX_WIDTH = 96;
+        public const int MIN_DEPTH = 12;
+        public const int MAX_DEPTH = 48;
+        public const int MIN_DRAWERS = 0;
+        public const int MAX_DRAWERS = 7;
+
+        public Desk()
+        {
+
+        }
     }
 }
