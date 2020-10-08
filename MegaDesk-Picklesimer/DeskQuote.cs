@@ -114,10 +114,11 @@ namespace MegaDesk_Picklesimer
 
             if (DeliveryOption != DeliveryOptions.NoRush)
             {
-                var deliveryIndex = 0;
-                var sizeIndex = 0;
+                int deliveryIndex;
+                int sizeIndex;
                 switch (DeliveryOption)
                 {
+                    default:
                     case DeliveryOptions.Rush3Day:
                         deliveryIndex = 0;
                         break;
